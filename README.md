@@ -31,6 +31,13 @@ docker exec -it pg su postgres
 psql -c "GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;"
 ```
 
+### SSL Cert for Localhost
+This configuration expects https over localhost on dev environment, mainly for OAuth2 providers that require it. 
+You can turn it off by removing `ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"` and possibly changing some other settings to get http to work.
+
+Otherwise you can generate a cert with `mkcert` and add it to a trusted store on your development machine, or self sign a certificate, or something like that.
+
+
 ### Django Setup
 
 You'll need testing `django_project/.env` file:
@@ -42,12 +49,6 @@ PASSWORD=password
 HOST=127.0.0.1
 PORT=5432
 ```
-
-### SSL Cert for Localhost
-This configuration expects https over localhost on dev environment, mainly for OAuth2 providers that require it. 
-You can turn it off by removing `ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"` and possibly changing some other settings to get http to work.
-
-Otherwise you can generate a cert with `mkcert` and add it to a trusted store on your development machine, or self sign a certificate, or something like that.
 
 Then you can do:
 
